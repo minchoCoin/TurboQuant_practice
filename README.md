@@ -4,6 +4,30 @@ TurboQuant_practice
 
 TurboQuant paper: [https://arxiv.org/abs/2504.19874](https://arxiv.org/abs/2504.19874)
 
+## Python Files Overview
+
+- `1.codebook.py`: creates a simple low-color image and shows codebook-size quantization results.
+- `2.lemma1.py`: plots empirical coordinate distribution on the sphere vs Lemma 1 density and Gaussian approximation.
+- `3.QJL.py`: minimal QJL and inverse-QJL implementation with reconstruction difference printout.
+- `3-1.QJL_simulation.py`: QJL simulation across dimensions (error distributions, variance markers, cosine similarity).
+- `4.QJL-lemma4_unbiased.py`: Monte Carlo check of Lemma 4 unbiasedness by averaging repeated QJL reconstructions.
+- `5.QJL-lemma4_variance.py`: Monte Carlo check of Lemma 4 variance bound.
+- `6.central_limit_theorem.py`: CLT simulation and sample-mean variance decay visualization.
+- `7.concentration_of_measure.py`: concentration-of-measure simulation on high-dimensional spheres.
+- `8-1.TurboQuant_mse_simulation.py`: current TurboQuant\_mse simulation script (randomized quantizer per trial).
+- `8-1.TurboQuant_mse_simulation_fix.py`: fixed-quantizer version of 8-1 (rotation/codebook fixed before trials).
+- `9-1.TurboQuant_prod_simulation.py`: current TurboQuant\_prod simulation script (randomized quantizer per trial).
+- `9-1.TurboQuant_prod_simulation_fix.py`: fixed-quantizer(rotation matrix) version of 9-1 (rotation/QJL fixed before trials).
+- `10.TurboQuant_final_simulation.py`: final comparison across bit widths with per-trial randomized quantizers.
+- `10.TurboQuant_final_simulation_fix.py`: fixed-quantizer(rotation matrix) version of final comparison.
+- `11.TurboQuant_quantizaiton_simulation.py`: quantized-only similarity experiment and Q(float)-K(quantized) softmax comparison.
+- `TurboQuant_mse.py`: baseline TurboQuant\_mse implementation (exact-density style).
+- `TurboQuant_mse_montecarlo.py`: Monte Carlo codebook-learning version of TurboQuant\_mse.
+- `TurboQuant_mse_lgamma.py`: numerically stable TurboQuant\_mse using log-gamma (`lgamma`) formulas.
+- `TurboQuant_prod.py`: baseline TurboQuant\_prod built on `TurboQuant_mse.py`.
+- `TurboQuant_prod_montecarlo.py`: Monte Carlo TurboQuant\_prod built on `TurboQuant_mse_montecarlo.py`.
+- `TurboQuant_prod_lgamma.py`: numerically stable TurboQuant\_prod built on `TurboQuant_mse_lgamma.py`.
+
 ## Lemma 1 Explanation
 
 Lemma 1 in `TurboQuant/main.tex` states the following:
@@ -778,4 +802,3 @@ After implementing and testing the main components of the paper, my overall conc
 From the experiments, I found that $\mathrm{TurboQuant}_{\tt mse}$ behaves as expected for reconstruction quality: it gives a simple and effective way to compress unit vectors while keeping the MSE controlled. At the same time, minimizing reconstruction MSE alone is not enough to guarantee the best inner-product behavior.
 
 However, $ \mathrm{TurboQuant}_{\tt prod} $ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
-
