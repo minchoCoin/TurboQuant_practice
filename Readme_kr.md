@@ -1,17 +1,17 @@
-# TurboQuant_practice (한국어 정리)
+﻿# TurboQuant_practice (?쒓뎅???뺣━)
 
 TurboQuant_practice
 
-TurboQuant 논문: [https://arxiv.org/abs/2504.19874](https://arxiv.org/abs/2504.19874)
+TurboQuant ?쇰Ц: [https://arxiv.org/abs/2504.19874](https://arxiv.org/abs/2504.19874)
 
-## Lemma 1 설명
+## Lemma 1 ?ㅻ챸
 
-`TurboQuant/main.tex`의 Lemma 1은 다음을 말합니다.
+`TurboQuant/main.tex`??Lemma 1? ?ㅼ쓬??留먰빀?덈떎.
 
-- $x \in S^{d-1}$가 $R^d$의 단위구면에서 균일분포를 따른다면
-- 임의의 좌표 $x_j$는 $[-1,1]$ 위의 Beta 형태 분포를 따릅니다.
+- $x \in S^{d-1}$媛 $R^d$???⑥쐞援щ㈃?먯꽌 洹좎씪遺꾪룷瑜??곕Ⅸ?ㅻ㈃
+- ?꾩쓽??醫뚰몴 $x_j$??$[-1,1]$ ?꾩쓽 Beta ?뺥깭 遺꾪룷瑜??곕쫭?덈떎.
 
-논문 식은 다음과 같습니다.
+?쇰Ц ?앹? ?ㅼ쓬怨?媛숈뒿?덈떎.
 
 $$
 f_X(x) =
@@ -19,132 +19,125 @@ f_X(x) =
 \left(1-x^2\right)^{(d-3)/2}, \quad x \in [-1,1].
 $$
 
-직관적으로, 구면 위 랜덤 점에서 특정 좌표를 $x_j=x$로 고정하면 나머지 좌표는 반지름 $\sqrt{1-x^2}$인 저차원 구면 위에 있어야 합니다. 따라서 해당 좌표값의 확률은 그 구면 단면의 크기로 결정됩니다.
+吏곴??곸쑝濡? 援щ㈃ ???쒕뜡 ?먯뿉???뱀젙 醫뚰몴瑜?$x_j=x$濡?怨좎젙?섎㈃ ?섎㉧吏 醫뚰몴??諛섏?由?$\sqrt{1-x^2}$???李⑥썝 援щ㈃ ?꾩뿉 ?덉뼱???⑸땲?? ?곕씪???대떦 醫뚰몴媛믪쓽 ?뺣쪧? 洹?援щ㈃ ?⑤㈃???ш린濡?寃곗젙?⑸땲??
 
-## 감마 함수 정의
+## 媛먮쭏 ?⑥닔 ?뺤쓽
 
-감마 함수는 팩토리얼을 실수/복소수로 확장한 함수입니다.
+媛먮쭏 ?⑥닔???⑺넗由ъ뼹???ㅼ닔/蹂듭냼?섎줈 ?뺤옣???⑥닔?낅땲??
 
 $$
 \Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt, \quad z > 0.
 $$
 
-유용한 항등식:
+?좎슜????벑??
 
 - $\Gamma(z+1) = z \Gamma(z)$
-- 정수 $n$에 대해 $\Gamma(n) = (n-1)!$
+- ?뺤닔 $n$?????$\Gamma(n) = (n-1)!$
 - $\Gamma(1/2) = \sqrt{\pi}$
 
-고차원 구/구면 공식에 감마 함수가 자연스럽게 등장하는 이유입니다.
+怨좎감??援?援щ㈃ 怨듭떇??媛먮쭏 ?⑥닔媛 ?먯뿰?ㅻ읇寃??깆옣?섎뒗 ?댁쑀?낅땲??
 
-## 구의 부피/면적 공식
+## 援ъ쓽 遺??硫댁쟻 怨듭떇
 
-반지름 $r$인 $d$차원 공의 부피:
+諛섏?由?$r$??$d$李⑥썝 怨듭쓽 遺??
 
 $$
 V_d(r) = \frac{\pi^{d/2}}{\Gamma(d/2 + 1)} r^d
 $$
 
-반지름 $r$인 구면 $S^{d-1}$의 표면적:
+諛섏?由?$r$??援щ㈃ $S^{d-1}$???쒕㈃??
 
 $$
 A_{d-1}(r) = \frac{2\pi^{d/2}}{\Gamma(d/2)} r^{d-1}.
 $$
 
-특히 $r=1$일 때:
+?뱁엳 $r=1$????
 
-- 단위공 부피: $V_d(1)=\pi^{d/2}/\Gamma(d/2+1)$
-- 단위구면 표면적: $A_{d-1}(1)=2\pi^{d/2}/\Gamma(d/2)$
+- ?⑥쐞怨?遺?? $V_d(1)=\pi^{d/2}/\Gamma(d/2+1)$
+- ?⑥쐞援щ㈃ ?쒕㈃?? $A_{d-1}(1)=2\pi^{d/2}/\Gamma(d/2)$
 
-Lemma 1 증명에서 단면 구면의 크기를 계산하므로 감마 함수가 등장합니다.
+Lemma 1 利앸챸?먯꽌 ?⑤㈃ 援щ㈃???ш린瑜?怨꾩궛?섎?濡?媛먮쭏 ?⑥닔媛 ?깆옣?⑸땲??
 
-## Lemma 1 증명 스케치
+## Lemma 1 利앸챸 ?ㅼ?移?
+?쇰Ц? ?⑤㈃??cross-section) 愿?먯쑝濡?利앸챸?⑸땲??
 
-논문은 단면적(cross-section) 관점으로 증명합니다.
-
-1. $x_j=x$를 고정하면 나머지 좌표는
-   $x_1^2+\cdots+x_{j-1}^2+x_{j+1}^2+\cdots+x_d^2=1-x^2$
-   를 만족합니다.
-2. 즉 가능한 집합은 $R^{d-1}$에서 반지름 $\sqrt{1-x^2}$, 차원 $d-2$인 구면입니다.
-3. 그 표면적은
+1. $x_j=x$瑜?怨좎젙?섎㈃ ?섎㉧吏 醫뚰몴??   $x_1^2+\cdots+x_{j-1}^2+x_{j+1}^2+\cdots+x_d^2=1-x^2$
+   瑜?留뚯”?⑸땲??
+2. 利?媛?ν븳 吏묓빀? $R^{d-1}$?먯꽌 諛섏?由?$\sqrt{1-x^2}$, 李⑥썝 $d-2$??援щ㈃?낅땲??
+3. 洹??쒕㈃?곸?
    $A_{d-2}(\sqrt{1-x^2})=\frac{2\pi^{(d-1)/2}}{\Gamma((d-1)/2)}(1-x^2)^{(d-2)/2}$.
-4. 전체 표본공간은 단위구면 $S^{d-1}$이고 표면적은
+4. ?꾩껜 ?쒕낯怨듦컙? ?⑥쐞援щ㈃ $S^{d-1}$?닿퀬 ?쒕㈃?곸?
    $A_{d-1}(1)=\frac{2\pi^{d/2}}{\Gamma(d/2)}$.
-5. 밀도는 단면적/전체면적 비율에 비례하며, 좌표 $x$에 대한 밀도로 바꾸면 Jacobian
+5. 諛?꾨뒗 ?⑤㈃???꾩껜硫댁쟻 鍮꾩쑉??鍮꾨??섎ŉ, 醫뚰몴 $x$?????諛?꾨줈 諛붽씀硫?Jacobian
    $\frac{1}{\sqrt{1-x^2}}$
-   가 추가됩니다.
-6. 정리하면
+   媛 異붽??⑸땲??
+6. ?뺣━?섎㈃
    $f_X(x)=\frac{\Gamma(d/2)}{\sqrt{\pi}\Gamma((d-1)/2)}(1-x^2)^{(d-3)/2}$.
 
-핵심은 “구면 위 랜덤점의 한 좌표 분포는 해당 좌표에서의 구면 슬라이스 크기로 결정된다”는 점입니다. 차원이 커질수록 분포는 0 근처로 집중하고, 고차원에서 $N(0,1/d)$ 근사로 이어집니다.
+?듭떖? ?쒓뎄硫????쒕뜡?먯쓽 ??醫뚰몴 遺꾪룷???대떦 醫뚰몴?먯꽌??援щ㈃ ?щ씪?댁뒪 ?ш린濡?寃곗젙?쒕떎?앸뒗 ?먯엯?덈떎. 李⑥썝??而ㅼ쭏?섎줉 遺꾪룷??0 洹쇱쿂濡?吏묒쨷?섍퀬, 怨좎감?먯뿉??$N(0,1/d)$ 洹쇱궗濡??댁뼱吏묐땲??
 
-## QJL 설명
+## QJL ?ㅻ챸
 
-`TurboQuant/main.tex` Definition 1의 QJL(Quantized Johnson-Lindenstrauss)은 inner product 추정을 위한 1-bit 양자화 맵입니다.
+`TurboQuant/main.tex` Definition 1??QJL(Quantized Johnson-Lindenstrauss)? inner product 異붿젙???꾪븳 1-bit ?묒옄??留듭엯?덈떎.
 
-정방향 맵:
+?뺣갑??留?
 
 $$
 Q_{\tt qjl}(\mathbf{x}) := \mathrm{sign}(\mathbf{S}\mathbf{x}), \quad \mathbf{x} \in \mathbb{R}^d,
 $$
 
-여기서 $\mathbf{S}\in\mathbb{R}^{d\times d}$는 i.i.d. $N(0,1)$ 가우시안 행렬이고 sign은 좌표별로 적용됩니다.
+?ш린??$\mathbf{S}\in\mathbb{R}^{d\times d}$??i.i.d. $N(0,1)$ 媛?곗떆???됰젹?닿퀬 sign? 醫뚰몴蹂꾨줈 ?곸슜?⑸땲??
 
-역양자화:
+??뼇?먰솕:
 
 $$
 Q_{\tt qjl}^{-1}(\mathbf{z}) := \frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top \mathbf{z}, \quad \mathbf{z}\in\{-1,+1\}^d.
 $$
 
-역할:
+??븷:
 
-- 가우시안 투영 후
-- 부호만 남겨 1-bit로 압축하고
-- $\mathbf{S}^\top$와 스케일링으로 복원 벡터를 만듭니다.
+- 媛?곗떆???ъ쁺 ??- 遺?몃쭔 ?④꺼 1-bit濡??뺤텞?섍퀬
+- $\mathbf{S}^\top$? ?ㅼ??쇰쭅?쇰줈 蹂듭썝 踰≫꽣瑜?留뚮벊?덈떎.
 
-QJL은 벡터 자체를 정확 복원하는 목적보다, inner product를 기대값 관점에서 보존하는 데 목적이 있습니다. TurboQuant에서는 MSE 양자화 residual에 QJL을 붙여 inner product estimator의 편향을 줄입니다.
+QJL? 踰≫꽣 ?먯껜瑜??뺥솗 蹂듭썝?섎뒗 紐⑹쟻蹂대떎, inner product瑜?湲곕?媛?愿?먯뿉??蹂댁〈?섎뒗 ??紐⑹쟻???덉뒿?덈떎. TurboQuant?먯꽌??MSE ?묒옄??residual??QJL??遺숈뿬 inner product estimator???명뼢??以꾩엯?덈떎.
 
-### $\sqrt{\pi/2}/d$ 계수가 들어가는 이유
+### $\sqrt{\pi/2}/d$ 怨꾩닔媛 ?ㅼ뼱媛???댁쑀
 
-표준정규 $g\sim N(0,1)$에 대해
-
+?쒖??뺢퇋 $g\sim N(0,1)$?????
 $$
 \mathbb{E}[\mathrm{sign}(g)g]=\mathbb{E}[|g|]=\sqrt{2/\pi}.
 $$
 
-따라서 $\mathbf{S}^\top\mathrm{sign}(\mathbf{S}\mathbf{x})$의 기대값에는 $d\sqrt{2/\pi}$ 배가 붙습니다. 이를 상쇄해 unbiased를 맞추는 계수가
+?곕씪??$\mathbf{S}^\top\mathrm{sign}(\mathbf{S}\mathbf{x})$??湲곕?媛믪뿉??$d\sqrt{2/\pi}$ 諛곌? 遺숈뒿?덈떎. ?대? ?곸뇙??unbiased瑜?留욎텛??怨꾩닔媛
 
 $$
 \frac{\sqrt{\pi/2}}{d}
 $$
 
-입니다.
+?낅땲??
 
-엄밀히는
+?꾨??덈뒗
 
 $$
 \mathbb{E}\!\left[\frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top\mathrm{sign}(\mathbf{S}\mathbf{x})\right]=\mathbf{x}
 $$
 
-가 성립합니다(단위벡터 기준). 즉 Definition 1의 계수는 임의가 아니라 unbiased inner-product 추정을 위한 정규화입니다.
+媛 ?깅┰?⑸땲???⑥쐞踰≫꽣 湲곗?). 利?Definition 1??怨꾩닔???꾩쓽媛 ?꾨땲??unbiased inner-product 異붿젙???꾪븳 ?뺢퇋?붿엯?덈떎.
 
-## Lemma 4 설명: QJL 성능 보장
+## Lemma 4 ?ㅻ챸: QJL ?깅뒫 蹂댁옣
 
-Lemma 4는 단위벡터 $\mathbf{x}\in S^{d-1}$, 임의 질의 벡터 $\mathbf{y}\in\mathbb{R}^d$에 대해
-
+Lemma 4???⑥쐞踰≫꽣 $\mathbf{x}\in S^{d-1}$, ?꾩쓽 吏덉쓽 踰≫꽣 $\mathbf{y}\in\mathbb{R}^d$?????
 $$
 \left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
 $$
 
-추정량의 통계적 보장을 제공합니다.
+異붿젙?됱쓽 ?듦퀎??蹂댁옣???쒓났?⑸땲??
 
-핵심:
+?듭떖:
 
 - unbiased:
   $$
-  \mathbb{E}\!\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right]
-  =
-  \langle \mathbf{y}, \mathbf{x} \rangle
+  \mathbb{E}\!\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \langle \mathbf{y}, \mathbf{x} \rangle
   $$
 - variance bound:
   $$
@@ -153,85 +146,76 @@ $$
   \frac{\pi}{2d}\|\mathbf{y}\|_2^2
   $$
 
-즉 1-bit 양자화임에도 평균은 정확하고, 분산은 $1/d$로 줄어듭니다.
+利?1-bit ?묒옄?붿엫?먮룄 ?됯퇏? ?뺥솗?섍퀬, 遺꾩궛? $1/d$濡?以꾩뼱??땲??
 
-### Step 1: 평균 형태로 재작성
-
-$\mathbf{S}$의 row를 $\mathbf{s}_1,\dots,\mathbf{s}_d$라 두면
+### Step 1: ?됯퇏 ?뺥깭濡??ъ옉??
+$\mathbf{S}$??row瑜?$\mathbf{s}_1,\dots,\mathbf{s}_d$???먮㈃
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
-=
-\frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2}\,\mathbf{s}_i^\top\mathbf{y}\,\mathrm{sign}(\mathbf{s}_i^\top\mathbf{x}).
+\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2}\,\mathbf{s}_i^\top\mathbf{y}\,\mathrm{sign}(\mathbf{s}_i^\top\mathbf{x}).
 $$
 
-이는
+?대뒗
 
 $$
 \langle \mathbf{a},\mathbf{S}^\top\mathbf{b}\rangle=\langle \mathbf{S}\mathbf{a},\mathbf{b}\rangle
 $$
 
-을 이용한 직접 대입 전개입니다.
+???댁슜??吏곸젒 ????꾧컻?낅땲??
 
-### Step 2: 왜 unbiased인가
+### Step 2: ??unbiased?멸?
 
-앞 절의 정규화 결과로
-
+???덉쓽 ?뺢퇋??寃곌낵濡?
 $$
 \mathbb{E}[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))]=\mathbf{x}
 $$
 
-이므로
-
+?대?濡?
 $$
-\mathbb{E}\!\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right]
-=
-\langle \mathbf{y},\mathbf{x}\rangle.
+\mathbb{E}\!\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \langle \mathbf{y},\mathbf{x}\rangle.
 $$
 
-### Step 3: 왜 분산이 제한되는가
+### Step 3: ??遺꾩궛???쒗븳?섎뒗媛
 
-독립 평균 형태이므로
-
+?낅┰ ?됯퇏 ?뺥깭?대?濡?
 $$
 \mathrm{Var}\!\left(\frac{1}{d}\sum_{i=1}^d z_i\right)
 \le
 \frac{1}{d}\mathrm{Var}(z_1).
 $$
 
-또한 variance $\le$ second moment와 sign의 절댓값 불변성을 이용하면
+?먰븳 variance $\le$ second moment? sign???덈뙎媛?遺덈??깆쓣 ?댁슜?섎㈃
 
 $$
 \mathrm{Var}(z_1)\le\frac{\pi}{2}\mathbb{E}\!\left[(\mathbf{s}_1^\top\mathbf{y})^2\right]
 =\frac{\pi}{2}\|\mathbf{y}\|_2^2
 $$
 
-이 되어 최종적으로
-
+???섏뼱 理쒖쥌?곸쑝濡?
 $$
 \mathrm{Var}\!\left(\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right)
 \le
 \frac{\pi}{2d}\|\mathbf{y}\|_2^2.
 $$
 
-### 해석
+### ?댁꽍
 
-Lemma 4는 정확성(기대값)과 집중도(분산)를 동시에 보장합니다. TurboQuant에서 QJL을 residual에 붙이는 이유가 여기에 있습니다.
+Lemma 4???뺥솗??湲곕?媛?怨?吏묒쨷??遺꾩궛)瑜??숈떆??蹂댁옣?⑸땲?? TurboQuant?먯꽌 QJL??residual??遺숈씠???댁쑀媛 ?ш린???덉뒿?덈떎.
 
-## Section 3.1 설명: MSE 최적 TurboQuant
+## Section 3.1 ?ㅻ챸: MSE 理쒖쟻 TurboQuant
 
-Section 3.1은 재구성 MSE 최소화를 목표로 한 설계를 설명합니다.
+Section 3.1? ?ш뎄??MSE 理쒖냼?붾? 紐⑺몴濡????ㅺ퀎瑜??ㅻ챸?⑸땲??
 
-1. 입력 $\mathbf{x}$를 직접 양자화하지 않고 랜덤 회전 $\mathbf{y}=\mathbf{\Pi}\mathbf{x}$를 먼저 수행합니다.
-2. Lemma 1에 의해 회전 좌표 분포 $f_X$를 알 수 있게 됩니다.
-3. 고차원 벡터 양자화를 좌표별 1차원 scalar quantization 문제로 근사합니다.
-4. $2^b$개 centroid를 갖는 연속 1D k-means 문제
+1. ?낅젰 $\mathbf{x}$瑜?吏곸젒 ?묒옄?뷀븯吏 ?딄퀬 ?쒕뜡 ?뚯쟾 $\mathbf{y}=\mathbf{\Pi}\mathbf{x}$瑜?癒쇱? ?섑뻾?⑸땲??
+2. Lemma 1???섑빐 ?뚯쟾 醫뚰몴 遺꾪룷 $f_X$瑜??????덇쾶 ?⑸땲??
+3. 怨좎감??踰≫꽣 ?묒옄?붾? 醫뚰몴蹂?1李⑥썝 scalar quantization 臾몄젣濡?洹쇱궗?⑸땲??
+4. $2^b$媛?centroid瑜?媛뽯뒗 ?곗냽 1D k-means 臾몄젣
    $$
    \mathcal{C}(f_X,b)
    $$
-   를 풀어 코드북을 설계합니다.
+   瑜????肄붾뱶遺곸쓣 ?ㅺ퀎?⑸땲??
 
-목적함수:
+紐⑹쟻?⑥닔:
 
 $$
 \mathcal{C}(f_X, b)
@@ -242,140 +226,130 @@ $$
 |x-c_i|^2 f_X(x)\,dx.
 $$
 
-의미:
+?섎?:
 
-- 구간은 인접 centroid 중점으로 나뉘는 Voronoi 셀입니다.
-- 각 적분항은 해당 셀의 기대 제곱오차입니다.
-- 전체 합은 scalar quantizer의 총 기대 MSE입니다.
+- 援ш컙? ?몄젒 centroid 以묒젏?쇰줈 ?섎돇??Voronoi ??낅땲??
+- 媛??곷텇??? ?대떦 ???湲곕? ?쒓낢?ㅼ감?낅땲??
+- ?꾩껜 ?⑹? scalar quantizer??珥?湲곕? MSE?낅땲??
 
-연속형 k-means의 최적조건도 동일하게
+?곗냽??k-means??理쒖쟻議곌굔???숈씪?섍쾶
 
 $$
 c_i=
 \frac{\int_{R_i}x f_X(x)\,dx}{\int_{R_i}f_X(x)\,dx}
 $$
 
-입니다.
+?낅땲??
 
-파이프라인:
+?뚯씠?꾨씪??
 
-1. 랜덤 회전 $\mathbf{\Pi}$ 샘플링
-2. $f_X$ 기반 codebook $\{c_k\}$ 계산
+1. ?쒕뜡 ?뚯쟾 $\mathbf{\Pi}$ ?섑뵆留?2. $f_X$ 湲곕컲 codebook $\{c_k\}$ 怨꾩궛
 3. $\mathbf{y}=\mathbf{\Pi}\mathbf{x}$
-4. 각 좌표 $y_j$를 최근접 centroid index로 양자화
-5. centroid로 $\tilde{\mathbf{y}}$ 복원
+4. 媛?醫뚰몴 $y_j$瑜?理쒓렐??centroid index濡??묒옄??5. centroid濡?$\tilde{\mathbf{y}}$ 蹂듭썝
 6. $\tilde{\mathbf{x}}=\mathbf{\Pi}^\top\tilde{\mathbf{y}}$
 
-## Algorithm 1: $\mathrm{TurboQuant}_{\tt mse}$ (MSE 최적화)
+## Algorithm 1: $\mathrm{TurboQuant}_{\tt mse}$ (MSE 理쒖쟻??
 
-논문 알고리즘(의미 동일한 한국어 요약):
+?쇰Ц ?뚭퀬由ъ쬁(?섎? ?숈씪???쒓뎅???붿빟):
 
-입력:
+?낅젰:
 
-- 차원 $d$
-- 비트폭 $b$
+- 李⑥썝 $d$
+- 鍮꾪듃??$b$
 
-사전 준비:
+?ъ쟾 以鍮?
 
-- 랜덤 회전행렬 $\mathbf{\Pi}$ 생성
-- $\mathcal{C}(f_X,b)$를 최소화하는 centroid $c_1,\dots,c_{2^b}$ 계산
+- ?쒕뜡 ?뚯쟾?됰젹 $\mathbf{\Pi}$ ?앹꽦
+- $\mathcal{C}(f_X,b)$瑜?理쒖냼?뷀븯??centroid $c_1,\dots,c_{2^b}$ 怨꾩궛
 
-양자화 $\mathrm{Quant}_{\tt mse}(\mathbf{x})$:
+?묒옄??$\mathrm{Quant}_{\tt mse}(\mathbf{x})$:
 
 1. $\mathbf{y}\leftarrow \mathbf{\Pi}\mathbf{x}$
-2. 각 $j\in[d]$에 대해 $\mathrm{idx}_j\leftarrow \arg\min_{k\in[2^b]}|y_j-c_k|$
-3. 인덱스 벡터 $\mathrm{idx}$ 저장
+2. 媛?$j\in[d]$?????$\mathrm{idx}_j\leftarrow \arg\min_{k\in[2^b]}|y_j-c_k|$
+3. ?몃뜳??踰≫꽣 $\mathrm{idx}$ ???
+蹂듭썝 $\mathrm{DeQuant}_{\tt mse}(\mathrm{idx})$:
 
-복원 $\mathrm{DeQuant}_{\tt mse}(\mathrm{idx})$:
-
-1. 각 $j$에 대해 $\tilde y_j\leftarrow c_{\mathrm{idx}_j}$
+1. 媛?$j$?????$\tilde y_j\leftarrow c_{\mathrm{idx}_j}$
 2. $\tilde{\mathbf{x}}\leftarrow \mathbf{\Pi}^\top\tilde{\mathbf{y}}$
-3. $\tilde{\mathbf{x}}$ 출력
+3. $\tilde{\mathbf{x}}$ 異쒕젰
 
-## $\mathrm{TurboQuant}_{\tt mse}$ 성능 보장
+## $\mathrm{TurboQuant}_{\tt mse}$ ?깅뒫 蹂댁옣
 
-오차 정의:
+?ㅼ감 ?뺤쓽:
 
 $$
 D_{\tt mse}:=\mathbb{E}\!\left[\|\mathbf{x}-\tilde{\mathbf{x}}\|_2^2\right]
 $$
 
-(기대값은 회전 랜덤성에 대해 취함)
+(湲곕?媛믪? ?뚯쟾 ?쒕뜡?깆뿉 ???痍⑦븿)
 
-상한:
+?곹븳:
 
 $$
 D_{\tt mse}\le \frac{\sqrt{3}\pi}{2}\cdot\frac{1}{4^b}.
 $$
 
-즉 비트 1개 증가 시 왜곡이 대략 4배 줄어듭니다.
+利?鍮꾪듃 1媛?利앷? ???쒓끝?????4諛?以꾩뼱??땲??
 
-소비트폭 구간의 보고값:
+?뚮퉬?명룺 援ш컙??蹂닿퀬媛?
 
 - $b=1$: $D_{\tt mse}\approx 0.36$
 - $b=2$: $D_{\tt mse}\approx 0.117$
 - $b=3$: $D_{\tt mse}\approx 0.03$
 - $b=4$: $D_{\tt mse}\approx 0.009$
 
-## Inner-Product 최적 TurboQuant
+## Inner-Product 理쒖쟻 TurboQuant
 
-$\mathrm{TurboQuant}_{\tt mse}$는 복원 MSE에는 좋지만 inner product 추정의 무편향성을 자동 보장하지는 않습니다. 이를 보완한 것이 $\mathrm{TurboQuant}_{\tt prod}$입니다.
+$\mathrm{TurboQuant}_{\tt mse}$??蹂듭썝 MSE?먮뒗 醫뗭?留?inner product 異붿젙??臾댄렪?μ꽦???먮룞 蹂댁옣?섏????딆뒿?덈떎. ?대? 蹂댁셿??寃껋씠 $\mathrm{TurboQuant}_{\tt prod}$?낅땲??
 
-구성:
+援ъ꽦:
 
-- $(b-1)$비트 $\mathrm{TurboQuant}_{\tt mse}$
-- residual에 대한 1비트 QJL
+- $(b-1)$鍮꾪듃 $\mathrm{TurboQuant}_{\tt mse}$
+- residual?????1鍮꾪듃 QJL
 
-먼저
+癒쇱?
 
 $$
 \tilde{\mathbf{x}}_{\tt mse}=Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))
 $$
 
-를 구하고 residual
+瑜?援ы븯怨?residual
 
 $$
 \mathbf{r}:=\mathbf{x}-\tilde{\mathbf{x}}_{\tt mse}
 $$
 
-를 계산한 뒤, QJL로 residual을 스케치합니다.
+瑜?怨꾩궛???? QJL濡?residual???ㅼ?移섑빀?덈떎.
 
-추정식:
-
-$$
-\left< \mathbf{y}, Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x})) \right>
-+
-\|\mathbf{r}\|_2\cdot
-\left< \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{r})) \right>.
-$$
-
-저장 항목:
-
-- MSE 인덱스 $\mathrm{idx}$
-- residual QJL 부호벡터 $\mathrm{qjl}$
-- residual 노름 $\gamma=\|\mathbf{r}\|_2$
-
-즉 coarse reconstruction은 MSE가 담당하고, 마지막 1비트로 inner product 편향을 보정하는 구조입니다.
-
-### 알고리즘 관점
-
-1. $\mathbf{x}$를 $(b-1)$비트 $\mathrm{TurboQuant}_{\tt mse}$로 양자화
-2. residual 계산
-3. residual에 QJL 적용
-4. $(\mathrm{idx},\mathrm{qjl},\gamma)$ 저장
-5. 복원 시 MSE 복원 + QJL residual 보정 합산
-
-## $\mathrm{TurboQuant}_{\tt prod}$ 성능 보장
-
-무편향성:
+異붿젙??
 
 $$
-\mathbb{E}\!\left[\langle \mathbf{y},\tilde{\mathbf{x}}\rangle\right]
-=
-\langle \mathbf{y},\mathbf{x}\rangle.
+\langle \mathbf{y}, Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x})) \rangle + \|\mathbf{r}\|_2\cdot
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{r})) \rangle.
 $$
 
-왜곡 정의/상한:
+?????ぉ:
+
+- MSE ?몃뜳??$\mathrm{idx}$
+- residual QJL 遺?몃깹??$\mathrm{qjl}$
+- residual ?몃쫫 $\gamma=\|\mathbf{r}\|_2$
+
+利?coarse reconstruction? MSE媛 ?대떦?섍퀬, 留덉?留?1鍮꾪듃濡?inner product ?명뼢??蹂댁젙?섎뒗 援ъ“?낅땲??
+
+### ?뚭퀬由ъ쬁 愿??
+1. $\mathbf{x}$瑜?$(b-1)$鍮꾪듃 $\mathrm{TurboQuant}_{\tt mse}$濡??묒옄??2. residual 怨꾩궛
+3. residual??QJL ?곸슜
+4. $(\mathrm{idx},\mathrm{qjl},\gamma)$ ???5. 蹂듭썝 ??MSE 蹂듭썝 + QJL residual 蹂댁젙 ?⑹궛
+
+## $\mathrm{TurboQuant}_{\tt prod}$ ?깅뒫 蹂댁옣
+
+臾댄렪?μ꽦:
+
+$$
+\mathbb{E}\!\left[\langle \mathbf{y},\tilde{\mathbf{x}}\rangle\right] = \langle \mathbf{y},\mathbf{x}\rangle.
+$$
+
+?쒓끝 ?뺤쓽/?곹븳:
 
 $$
 D_{\tt prod}
@@ -385,124 +359,119 @@ D_{\tt prod}
 \frac{\sqrt{3}\pi^2\|\mathbf{y}\|_2^2}{d}\cdot\frac{1}{4^b}.
 $$
 
-소비트폭 보고값:
+?뚮퉬?명룺 蹂닿퀬媛?
 
 - $b=1$: $D_{\tt prod}\approx \frac{1.57}{d}$
 - $b=2$: $D_{\tt prod}\approx \frac{0.56}{d}$
 - $b=3$: $D_{\tt prod}\approx \frac{0.18}{d}$
 - $b=4$: $D_{\tt prod}\approx \frac{0.047}{d}$
 
-하한:
+?섑븳:
 
 $$
 D_{\tt prod}(Q)\ge \frac{1}{d}\cdot\frac{1}{4^b}.
 $$
 
-즉 상수배 차이를 제외하면 최적 왜곡률에 근접합니다.
+利??곸닔諛?李⑥씠瑜??쒖쇅?섎㈃ 理쒖쟻 ?쒓끝瑜좎뿉 洹쇱젒?⑸땲??
 
 ## Entropy Encoding Codebook Pointer
 
-$\mathrm{TurboQuant}_{\tt mse}$의 centroid index 분포는 일반적으로 균일하지 않습니다. 각 index $\ell\in[2^b]$의 확률은
+$\mathrm{TurboQuant}_{\tt mse}$??centroid index 遺꾪룷???쇰컲?곸쑝濡?洹좎씪?섏? ?딆뒿?덈떎. 媛?index $\ell\in[2^b]$???뺣쪧?
 
 $$
 p_\ell := \int_{\frac{c_{\ell-1}+c_\ell}{2}}^{\frac{c_\ell+c_{\ell+1}}{2}} f_X(x)\,dx.
 $$
 
-이 분포에 대해 prefix code 등 entropy coding을 적용하면, 고정 $b$비트 대신 평균 비트를 엔트로피 수준까지 줄일 수 있습니다.
+??遺꾪룷?????prefix code ??entropy coding???곸슜?섎㈃, 怨좎젙 $b$鍮꾪듃 ????됯퇏 鍮꾪듃瑜??뷀듃濡쒗뵾 ?섏?源뚯? 以꾩씪 ???덉뒿?덈떎.
 
-중요한 점:
+以묒슂????
 
-- 재구성 왜곡(MSE)은 변하지 않음
-- 저장 비트만 감소
-- 이득은 비균일 인덱스 분포의 무손실 부호화에서 발생
+- ?ш뎄???쒓끝(MSE)? 蹂?섏? ?딆쓬
+- ???鍮꾪듃留?媛먯냼
+- ?대뱷? 鍮꾧퇏???몃뜳??遺꾪룷??臾댁넀??遺?명솕?먯꽌 諛쒖깮
 
-논문 보고에 따르면 $b=4$에서 raw 4비트 대비 엔트로피가 약 3.8비트이고, 평균 약 5% 절감이 가능합니다. 다만 복잡도 대비 이득이 크지 않아 본 알고리즘에는 기본 포함하지 않습니다.
+?쇰Ц 蹂닿퀬???곕Ⅴ硫?$b=4$?먯꽌 raw 4鍮꾪듃 ?鍮??뷀듃濡쒗뵾媛 ??3.8鍮꾪듃?닿퀬, ?됯퇏 ??5% ?덇컧??媛?ν빀?덈떎. ?ㅻ쭔 蹂듭옟???鍮??대뱷???ъ? ?딆븘 蹂??뚭퀬由ъ쬁?먮뒗 湲곕낯 ?ы븿?섏? ?딆뒿?덈떎.
 
 ## My Experiments
 
-아래는 논문 아이디어를 구현하면서 생성한 실험 그림입니다.
+?꾨옒???쇰Ц ?꾩씠?붿뼱瑜?援ы쁽?섎㈃???앹꽦???ㅽ뿕 洹몃┝?낅땲??
 
 ### 1. Codebook Quantization Demo
 
-저색상 이미지, 코드북 크기별 양자화 결과, 코드북 팔레트를 시각화했습니다.
+??됱긽 ?대?吏, 肄붾뱶遺??ш린蹂??묒옄??寃곌낵, 肄붾뱶遺??붾젅?몃? ?쒓컖?뷀뻽?듬땲??
 
 ![Codebook comparison](results/1.codebook_comparison.png)
 
 ### 2. Lemma 1 Coordinate Distribution
 
-차원별로 다음 3가지를 비교했습니다.
+李⑥썝蹂꾨줈 ?ㅼ쓬 3媛吏瑜?鍮꾧탳?덉뒿?덈떎.
 
-- 단위구면 좌표의 empirical 분포
-- Lemma 1 정확 밀도
-- 가우시안 근사 $N(0,1/d)$
+- ?⑥쐞援щ㈃ 醫뚰몴??empirical 遺꾪룷
+- Lemma 1 ?뺥솗 諛??- 媛?곗떆??洹쇱궗 $N(0,1/d)$
 
 ![Lemma 1 distribution](results/2.lemma1_distribution.png)
 
 ### 3. QJL Simulation
 
-여러 차원에서 다음을 관찰했습니다.
+?щ윭 李⑥썝?먯꽌 ?ㅼ쓬??愿李고뻽?듬땲??
 
-- inner-product error 분포
-- inner-product squared error 분포
-- $x$와 QJL 복원벡터의 코사인 유사도
-
-QJL은 cosine 최대화보다 inner product 무편향 추정에 초점이 있음을 확인할 수 있습니다.
+- inner-product error 遺꾪룷
+- inner-product squared error 遺꾪룷
+- $x$? QJL 蹂듭썝踰≫꽣??肄붿궗???좎궗??
+QJL? cosine 理쒕??붾낫??inner product 臾댄렪??異붿젙??珥덉젏???덉쓬???뺤씤?????덉뒿?덈떎.
 
 ![QJL simulation](results/3-1.QJL_simulation.png)
 
 ### 4. Central Limit Theorem
 
-지수분포 기반 시뮬레이션으로 다음을 확인했습니다.
+吏?섎텇??湲곕컲 ?쒕??덉씠?섏쑝濡??ㅼ쓬???뺤씤?덉뒿?덈떎.
 
-- 표준화 표본평균의 정규분포 수렴
-- 표본 크기 증가에 따른 표본평균 분산 감소
+- ?쒖????쒕낯?됯퇏???뺢퇋遺꾪룷 ?섎졃
+- ?쒕낯 ?ш린 利앷????곕Ⅸ ?쒕낯?됯퇏 遺꾩궛 媛먯냼
 
 ![Central limit theorem](results/6.central_limit_theorem.png)
 
 ### 5. Concentration of Measure
 
-고차원 구면에서 차원이 커질수록 좌표 하나가 0 근처에 더 집중됨을 시각화했습니다.
+怨좎감??援щ㈃?먯꽌 李⑥썝??而ㅼ쭏?섎줉 醫뚰몴 ?섎굹媛 0 洹쇱쿂????吏묒쨷?⑥쓣 ?쒓컖?뷀뻽?듬땲??
 
 ![Concentration of measure](results/7.concentration_of_measure.png)
 
 ### 6. TurboQuant\_mse Simulation
 
-차원별로 다음 분포를 비교했습니다.
+李⑥썝蹂꾨줈 ?ㅼ쓬 遺꾪룷瑜?鍮꾧탳?덉뒿?덈떎.
 
 - $D_{\tt mse}=\|x-\tilde{x}\|_2^2$
 - per-coordinate MSE
 - inner-product squared error
-- 원본/복원 코사인 유사도
-
+- ?먮낯/蹂듭썝 肄붿궗???좎궗??
 ![TurboQuant mse simulation](results/8-1.TurboQuant_mse_simulation_fix.png)
 
 ### 7. TurboQuant\_prod Simulation
 
-차원별로 다음을 비교했습니다.
+李⑥썝蹂꾨줈 ?ㅼ쓬??鍮꾧탳?덉뒿?덈떎.
 
-- $D_{\tt mse}$ 분포
-- per-coordinate MSE 분포
-- $D_{\tt prod}$ 분포
-- $D_{\tt prod}$ 하한/상한
-- 원본/복원 코사인 유사도
-
+- $D_{\tt mse}$ 遺꾪룷
+- per-coordinate MSE 遺꾪룷
+- $D_{\tt prod}$ 遺꾪룷
+- $D_{\tt prod}$ ?섑븳/?곹븳
+- ?먮낯/蹂듭썝 肄붿궗???좎궗??
 ![TurboQuant prod simulation](results/9-1.TurboQuant_prod_simulation_fix.png)
 
 ### 8. Final Comparison Across Bit Widths
 
-비트폭 변화에 따라 $\mathrm{TurboQuant}_{\tt mse}$와 $\mathrm{TurboQuant}_{\tt prod}$를 비교했습니다.
+鍮꾪듃??蹂?붿뿉 ?곕씪 $\mathrm{TurboQuant}_{\tt mse}$? $\mathrm{TurboQuant}_{\tt prod}$瑜?鍮꾧탳?덉뒿?덈떎.
 
-- raw inner-product error 히스토그램
-- squared inner-product error 히스토그램
-- 평균 inner-product distortion + 하한/상한
-- 평균 MSE + 하한/상한
+- raw inner-product error ?덉뒪?좉렇??- squared inner-product error ?덉뒪?좉렇??- ?됯퇏 inner-product distortion + ?섑븳/?곹븳
+- ?됯퇏 MSE + ?섑븳/?곹븳
 
 ![Final TurboQuant comparison](results/10.TurboQuant_final_simulation_fix.png)
 
 ## My Conclusion
 
-구현/실험을 통해 본 핵심은 **랜덤 회전 관점**입니다. 회전 후 좌표 분포가 예측 가능해지면서, 고차원 벡터 문제를 원리 있는 scalar codebook 설계 문제로 바꿀 수 있습니다.
+援ы쁽/?ㅽ뿕???듯빐 蹂??듭떖? **?쒕뜡 ?뚯쟾 愿??*?낅땲?? ?뚯쟾 ??醫뚰몴 遺꾪룷媛 ?덉륫 媛?ν빐吏硫댁꽌, 怨좎감??踰≫꽣 臾몄젣瑜??먮━ ?덈뒗 scalar codebook ?ㅺ퀎 臾몄젣濡?諛붽? ???덉뒿?덈떎.
 
-$\mathrm{TurboQuant}_{\tt mse}$는 재구성 관점에서 단순하고 효과적이었고, MSE 제어도 안정적으로 확인했습니다. 반면 inner product 측면은 MSE 최소화만으로 충분하지 않다는 점도 확인했습니다.
+$\mathrm{TurboQuant}_{\tt mse}$???ш뎄??愿?먯뿉???⑥닚?섍퀬 ?④낵?곸씠?덇퀬, MSE ?쒖뼱???덉젙?곸쑝濡??뺤씤?덉뒿?덈떎. 諛섎㈃ inner product 痢〓㈃? MSE 理쒖냼?붾쭔?쇰줈 異⑸텇?섏? ?딅떎???먮룄 ?뺤씤?덉뒿?덈떎.
 
-현재 실험에서는 $\mathrm{TurboQuant}_{\tt prod}$가 항상 $\mathrm{TurboQuant}_{\tt mse}$보다 좋아 보이지는 않았습니다. 구현 세부(랜덤성 처리/실험 셋업 등)에서 오차 요인이 있을 수 있어 추가 점검이 필요합니다.
+?꾩옱 ?ㅽ뿕?먯꽌??$\mathrm{TurboQuant}_{\tt prod}$媛 ??긽 $\mathrm{TurboQuant}_{\tt mse}$蹂대떎 醫뗭븘 蹂댁씠吏???딆븯?듬땲?? 援ы쁽 ?몃?(?쒕뜡??泥섎━/?ㅽ뿕 ?뗭뾽 ???먯꽌 ?ㅼ감 ?붿씤???덉쓣 ???덉뼱 異붽? ?먭????꾩슂?⑸땲??
+

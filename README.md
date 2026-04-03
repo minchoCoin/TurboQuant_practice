@@ -1,4 +1,4 @@
-# TurboQuant_practice
+﻿# TurboQuant_practice
 
 TurboQuant_practice
 
@@ -135,17 +135,13 @@ exactly cancels this factor, so the reconstruction is centered at the original v
 A more formal derivation is as follows. Let the rows of $\mathbf{S}$ be $\mathbf{s}_1, \dots, \mathbf{s}_d$, where each $\mathbf{s}_i \sim N(\mathbf{0}, I_d)$. Then
 
 $$
-\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})
-=
-\sum_{i=1}^d \mathbf{s}_i \operatorname{sign}(\mathbf{s}_i^\top \mathbf{x}),
+\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x}) = \sum_{i=1}^d \mathbf{s}_i \operatorname{sign}(\mathbf{s}_i^\top \mathbf{x}),
 $$
 
 so
 
 $$
-\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right]
-=
-d \, \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right].
+\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = d \, \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right].
 $$
 
 By rotational invariance of the Gaussian distribution, the vector
@@ -163,11 +159,7 @@ $$
 To find $c$, take the inner product with $\mathbf{x}$. When $\|\mathbf{x}\|_2 = 1$,
 
 $$
-\mathbf{x}^\top \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right]
-=
-\mathbb{E}\left[(\mathbf{s}^\top \mathbf{x}) \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right]
-=
-\mathbb{E}\left[|\mathbf{s}^\top \mathbf{x}|\right].
+\mathbf{x}^\top \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \mathbb{E}\left[(\mathbf{s}^\top \mathbf{x}) \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \mathbb{E}\left[|\mathbf{s}^\top \mathbf{x}|\right].
 $$
 
 Since $\mathbf{s}^\top \mathbf{x} \sim N(0,1)$, this becomes
@@ -179,25 +171,19 @@ $$
 Therefore,
 
 $$
-\mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right]
-=
-\sqrt{\frac{2}{\pi}} \, \mathbf{x},
+\mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
 $$
 
 and hence
 
 $$
-\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right]
-=
-d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
+\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
 $$
 
 Now applying the dequantization factor gives
 
 $$
-\mathbb{E}\left[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right]
-=
-\mathbf{x}.
+\mathbb{E}\left[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = \mathbf{x}.
 $$
 
 This is the precise reason the coefficient $\sqrt{\pi/2}/d$ appears in Definition 1: it makes the QJL reconstruction unbiased in expectation for unit vectors, which is exactly the normalization needed for unbiased inner-product estimation.
@@ -224,9 +210,7 @@ Lemma 4 says that this estimator has two key properties:
 More precisely, the lemma states
 
 $$
-\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right]
-=
-\langle \mathbf{y}, \mathbf{x} \rangle
+\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \langle \mathbf{y}, \mathbf{x} \rangle
 $$
 
 and
@@ -254,27 +238,19 @@ $$
 and substituting $\mathbf{z} = Q_{\tt qjl}(\mathbf{x}) = \mathrm{sign}(\mathbf{S}\mathbf{x})$, we obtain
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
-=
-\frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 This formula comes from a direct substitution. First,
 
 $$
-Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))
-=
-\frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top Q_{\tt qjl}(\mathbf{x})
-=
-\frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}).
+Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) = \frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top Q_{\tt qjl}(\mathbf{x}) = \frac{\sqrt{\pi/2}}{d}\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}).
 $$
 
 Taking the inner product with $\mathbf{y}$ gives
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
-=
-\frac{\sqrt{\pi/2}}{d}
+\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{\sqrt{\pi/2}}{d}
 \left\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle.
 $$
 
@@ -287,25 +263,19 @@ $$
 Then
 
 $$
-\left\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle
-=
-\left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle.
+\left\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle = \left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle.
 $$
 
 If the rows of $\mathbf{S}$ are $\mathbf{s}_1,\dots,\mathbf{s}_d$, then
 
 $$
-\mathbf{S}\mathbf{y}
-=
-\begin{bmatrix}
+\mathbf{S}\mathbf{y} = \begin{bmatrix}
 \mathbf{s}_1^\top \mathbf{y}\\
 \vdots\\
 \mathbf{s}_d^\top \mathbf{y}
 \end{bmatrix},
 \qquad
-\mathrm{sign}(\mathbf{S}\mathbf{x})
-=
-\begin{bmatrix}
+\mathrm{sign}(\mathbf{S}\mathbf{x}) = \begin{bmatrix}
 \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x})\\
 \vdots\\
 \mathrm{sign}(\mathbf{s}_d^\top \mathbf{x})
@@ -315,9 +285,7 @@ $$
 Therefore their inner product is
 
 $$
-\left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle
-=
-\sum_{i=1}^d
+\left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle = \sum_{i=1}^d
 \mathbf{s}_i^\top \mathbf{y}\,
 \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
@@ -325,14 +293,10 @@ $$
 Substituting this back yields
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
-=
-\frac{\sqrt{\pi/2}}{d}
+\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{\sqrt{\pi/2}}{d}
 \sum_{i=1}^d
 \mathbf{s}_i^\top \mathbf{y}\,
-\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x})
-=
-\frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}) = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 So the full estimator is an average of $d$ i.i.d. random variables. Define
@@ -344,9 +308,7 @@ $$
 Then
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
-=
-\frac{1}{d}\sum_{i=1}^d z_i.
+\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{1}{d}\sum_{i=1}^d z_i.
 $$
 
 This is the central simplification in the proof.
@@ -362,11 +324,7 @@ $$
 Taking inner products with $\mathbf{y}$ and using linearity of expectation yields
 
 $$
-\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right]
-=
-\left\langle \mathbf{y}, \mathbb{E}\left[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))\right] \right\rangle
-=
-\langle \mathbf{y}, \mathbf{x} \rangle.
+\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \left\langle \mathbf{y}, \mathbb{E}\left[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))\right] \right\rangle = \langle \mathbf{y}, \mathbf{x} \rangle.
 $$
 
 So the QJL inner-product estimator is exactly unbiased.
@@ -378,9 +336,7 @@ Since the estimator is the average of independent samples $z_1,\dots,z_d$, its v
 $$
 \mathrm{Var}\left(\frac{1}{d}\sum_{i=1}^d z_i\right)
 \le
-\frac{1}{d^2}\sum_{i=1}^d \mathrm{Var}(z_i)
-=
-\frac{1}{d}\mathrm{Var}(z_1),
+\frac{1}{d^2}\sum_{i=1}^d \mathrm{Var}(z_i) = \frac{1}{d}\mathrm{Var}(z_1),
 $$
 
 because the $z_i$ are i.i.d.
@@ -388,9 +344,7 @@ because the $z_i$ are i.i.d.
 So it remains to bound the variance of one term. The paper uses
 
 $$
-\mathrm{Var}(z_1)
-=
-\frac{\pi}{2}\,\mathrm{Var}\left(\mathbf{s}_1^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x})\right)
+\mathrm{Var}(z_1) = \frac{\pi}{2}\,\mathrm{Var}\left(\mathbf{s}_1^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x})\right)
 \le
 \frac{\pi}{2}\,\mathbb{E}\left[(\mathbf{s}_1^\top \mathbf{y})^2\right].
 $$
@@ -480,9 +434,7 @@ This is exactly the continuous analogue of ordinary k-means. In finite-data k-me
 In the continuous setting, if $R_i$ denotes the Voronoi region of centroid $c_i$, then the optimality condition has the same form as in ordinary k-means:
 
 $$
-c_i
-=
-\frac{\int_{R_i} x f_X(x)\,dx}{\int_{R_i} f_X(x)\,dx}.
+c_i = \frac{\int_{R_i} x f_X(x)\,dx}{\int_{R_i} f_X(x)\,dx}.
 $$
 
 So $\mathcal{C}(f_X,b)$ is the minimum achievable scalar MSE when quantizing a random variable with density $f_X$ using $2^b$ reconstruction values.
@@ -617,10 +569,8 @@ $$
 This residual is small in norm because the MSE quantizer already captures most of the signal. The remaining information is then encoded with QJL. The paper writes the resulting inner-product estimator as
 
 $$
-\left< \mathbf{y}, Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x})) \right>
-+
-\|\mathbf{r}\|_2 \cdot
-\left< \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{r})) \right>.
+\langle \mathbf{y}, Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x})) \rangle + \|\mathbf{r}\|_2 \cdot
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{r})) \rangle.
 $$
 
 So the MSE part gives a good low-distortion approximation, and the QJL part corrects the residual in a way that preserves inner products in expectation.
@@ -634,9 +584,7 @@ The corresponding quantization map stores three objects:
 In the paper, this is summarized as
 
 $$
-Q_{\tt prod}(\mathbf{x})
-=
-\left[
+Q_{\tt prod}(\mathbf{x}) = \left[
 Q_{\tt mse}(\mathbf{x}),
 Q_{\tt qjl}\left(\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))\right),
 \left\|\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))\right\|_2
@@ -662,9 +610,7 @@ This is why the algorithm is called inner-product optimal: it uses the MSE quant
 The paper proves that $\mathrm{TurboQuant}_{\tt prod}$ is unbiased for inner products. For any unit vector $\mathbf{x} \in S^{d-1}$ and any query vector $\mathbf{y} \in \mathbb{R}^d$, the reconstructed vector $\tilde{\mathbf{x}}$ satisfies
 
 $$
-\mathbb{E}\left[\langle \mathbf{y}, \tilde{\mathbf{x}} \rangle\right]
-=
-\langle \mathbf{y}, \mathbf{x} \rangle.
+\mathbb{E}\left[\langle \mathbf{y}, \tilde{\mathbf{x}} \rangle\right] = \langle \mathbf{y}, \mathbf{x} \rangle.
 $$
 
 The paper then gives the following upper bound for the inner-product distortion
@@ -810,3 +756,4 @@ After implementing and testing the main components of the paper, my overall conc
 From the experiments, I found that $\mathrm{TurboQuant}_{\tt mse}$ behaves as expected for reconstruction quality: it gives a simple and effective way to compress unit vectors while keeping the MSE controlled. At the same time, minimizing reconstruction MSE alone is not enough to guarantee the best inner-product behavior.
 
 However,$\mathrm{TurboQuant}_{\tt prod}$ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
+
