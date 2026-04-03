@@ -755,6 +755,6 @@ After implementing and testing the main components of the paper, my overall conc
 
 From the experiments, I found that $\mathrm{TurboQuant}_{\tt mse}$ behaves as expected for reconstruction quality: it gives a simple and effective way to compress unit vectors while keeping the MSE controlled. At the same time, minimizing reconstruction MSE alone is not enough to guarantee the best inner-product behavior.
 
-However,$\mathrm{TurboQuant}_{\tt prod}$ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
+However, $ \mathrm{TurboQuant}_{\tt prod} $ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
 
 
