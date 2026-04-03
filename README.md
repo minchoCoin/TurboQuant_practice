@@ -386,6 +386,12 @@ Section 3.1 of `TurboQuant/main.tex` explains how TurboQuant is designed when th
 
 The first idea is to randomize the geometry of the input. Instead of quantizing $\mathbf{x}$ directly, TurboQuant multiplies it by a random rotation matrix $\mathbf{\Pi} \in \mathbb{R}^{d \times d}$. The paper suggests generating $\mathbf{\Pi}$ by taking the QR decomposition of a random Gaussian matrix. After this rotation, the vector $\mathbf{y} = \mathbf{\Pi}\mathbf{x}$ is uniformly distributed on the unit sphere, even if the original $\mathbf{x}$ was adversarial.
 
+Why they use QR decomposition? If matrix A is decomposed to QR, then Q is orthogonal matrix, which each column is orthonormal to another column. therefore
+
+$$ Q^TQ=1$$
+
+for $\mathbf{x}$ and $\mathbf{y}$ vector, their inner production is $\mathbf{x}^T\mathbf{y}$. for rotated vector, $Q\mathbf{x}$ and $Q\mathbf{y}$, their inner production is $(Q\mathbf{x})^T(Q\mathbf{y})=\mathbf{x}^T Q^TQ\mathbf{y}=\mathbf{x}^T\mathbf{y}$
+
 This random rotation is what makes the quantization problem tractable. By Lemma 1, each coordinate of $\mathbf{y}$ follows the density
 
 $$
