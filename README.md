@@ -159,31 +159,31 @@ exactly cancels this factor, so the reconstruction is centered at the original v
 A more formal derivation is as follows. Let the rows of $\mathbf{S}$ be $\mathbf{s}_1, \dots, \mathbf{s}_d$, where each $\mathbf{s}_i \sim N(\mathbf{0}, I_d)$. Then
 
 $$
-\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x}) = \sum_{i=1}^d \mathbf{s}_i \\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}),
+\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) = \sum_{i=1}^d \mathbf{s}_i \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}),
 $$
 
 so
 
 $$
-\mathbb{E}[\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = d \, \mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})].
+\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d \, \mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})].
 $$
 
 By rotational invariance of the Gaussian distribution, the vector
 
 $$
-\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})]
+\mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})]
 $$
 
 must be parallel to $\mathbf{x}$, so for some scalar $c$,
 
 $$
-\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = c \mathbf{x}.
+\mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = c \mathbf{x}.
 $$
 
 To find $c$, take the inner product with $\mathbf{x}$. When $\|\mathbf{x}\|_2 = 1$,
 
 $$
-\mathbf{x}^\top \mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[(\mathbf{s}^\top \mathbf{x}) \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[|\mathbf{s}^\top \mathbf{x}|].
+\mathbf{x}^\top \mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[(\mathbf{s}^\top \mathbf{x}) \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[|\mathbf{s}^\top \mathbf{x}|].
 $$
 
 Since $\mathbf{s}^\top \mathbf{x} \sim N(0,1)$, this becomes
@@ -195,19 +195,19 @@ $$
 Therefore,
 
 $$
-\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
+\mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
 $$
 
 and hence
 
 $$
-\mathbb{E}[\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
+\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
 $$
 
 Now applying the dequantization factor gives
 
 $$
-\mathbb{E}[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = \mathbf{x}.
+\mathbb{E}[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = \mathbf{x}.
 $$
 
 This is the precise reason the coefficient $\sqrt{\pi/2}/d$ appears in Definition 1: it makes the QJL reconstruction unbiased in expectation for unit vectors, which is exactly the normalization needed for unbiased inner-product estimation.
