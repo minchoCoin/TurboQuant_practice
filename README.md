@@ -39,7 +39,7 @@ The formula in the paper is:
 
 $$
 f_X(x) =
-\frac{\Gamma(d/2)}{\sqrt{\pi}\,\Gamma((d-1)/2)}
+\frac{\Gamma(d/2)}{\sqrt{\pi}\Gamma((d-1)/2)}
 (1-x^2)^{(d-3)/2}, \quad x \in [-1,1].
 $$
 
@@ -104,7 +104,7 @@ The proof in the paper uses a cross-sectional area argument.
 6. Therefore,
    $f_X(x) = \frac{\frac{2\pi^{(d-1)/2}}{\Gamma((d-1)/2)} (1-x^2)^{(d-2)/2}}{\frac{2\pi^{d/2}}{\Gamma(d/2)}} \cdot \frac{1}{\sqrt{1-x^2}}$
    and simplifying gives
-   $f_X(x) = \frac{\Gamma(d/2)}{\sqrt{\pi}\,\Gamma((d-1)/2)} (1-x^2)^{(d-3)/2}$.
+   $f_X(x) = \frac{\Gamma(d/2)}{\sqrt{\pi}\Gamma((d-1)/2)} (1-x^2)^{(d-3)/2}$.
 
 So the key idea behind Lemma 1 is that the distribution of one coordinate of a random point on the sphere is determined by the size of the spherical slice at that coordinate value. As the dimension grows, this distribution becomes increasingly concentrated near zero, which is why it converges to $N(0, 1/d)$ in high dimensions.
 
@@ -145,7 +145,7 @@ $$
 So when we form the dequantized vector using $\mathbf{S}^\top \mathbf{z}$, each coordinate contributes an extra factor of $\sqrt{2/\pi}$ in expectation. Also, because $\mathbf{S}$ has $d$ rows, summing over all rows introduces a factor of $d$. Therefore the raw quantity $\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})$ has expectation proportional to
 
 $$
-d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
+d \sqrt{\frac{2}{\pi}}  \mathbf{x}.
 $$
 
 Multiplying by
@@ -165,7 +165,7 @@ $$
 so
 
 $$
-\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d \, \mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})].
+\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d  \mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})].
 $$
 
 By rotational invariance of the Gaussian distribution, the vector
@@ -195,13 +195,13 @@ $$
 Therefore,
 
 $$
-\mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
+\mathbb{E}[\mathbf{s} \mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \sqrt{\frac{2}{\pi}}  \mathbf{x},
 $$
 
 and hence
 
 $$
-\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
+\mathbb{E}[\mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x})] = d \sqrt{\frac{2}{\pi}}  \mathbf{x}.
 $$
 
 Now applying the dequantization factor gives
@@ -262,7 +262,7 @@ $$
 and substituting $\mathbf{z} = Q_{\tt qjl}(\mathbf{x}) = \mathrm{sign}(\mathbf{S}\mathbf{x})$, we obtain
 
 $$
-\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2}  \mathbf{s}_i^\top \mathbf{y}  \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 This formula comes from a direct substitution. First,
@@ -310,7 +310,7 @@ Therefore their inner product is
 
 $$
 \langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \rangle = \sum_{i=1}^d
-\mathbf{s}_i^\top \mathbf{y}\,
+\mathbf{s}_i^\top \mathbf{y}
 \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
@@ -319,14 +319,14 @@ Substituting this back yields
 $$
 \langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{\sqrt{\pi/2}}{d}
 \sum_{i=1}^d
-\mathbf{s}_i^\top \mathbf{y}\,
-\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}) = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+\mathbf{s}_i^\top \mathbf{y}
+\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}) = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2}  \mathbf{s}_i^\top \mathbf{y}  \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 So the full estimator is an average of $d$ i.i.d. random variables. Define
 
 $$
-z_i := \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+z_i := \sqrt{\pi/2}  \mathbf{s}_i^\top \mathbf{y}  \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 Then
@@ -368,9 +368,9 @@ because the $z_i$ are i.i.d.
 So it remains to bound the variance of one term. The paper uses
 
 $$
-\mathrm{Var}(z_1) = \frac{\pi}{2}\,\mathrm{Var}(\mathbf{s}_1^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x}))
+\mathrm{Var}(z_1) = \frac{\pi}{2}\mathrm{Var}(\mathbf{s}_1^\top \mathbf{y}  \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x}))
 \le
-\frac{\pi}{2}\,\mathbb{E}[(\mathbf{s}_1^\top \mathbf{y})^2].
+\frac{\pi}{2}\mathbb{E}[(\mathbf{s}_1^\top \mathbf{y})^2].
 $$
 
 This step uses the basic fact that variance is at most the second moment, together with the fact that multiplying by a sign changes only the sign, not the magnitude.
@@ -420,7 +420,7 @@ This random rotation is what makes the quantization problem tractable. By Lemma 
 
 $$
 f_X(x) =
-\frac{\Gamma(d/2)}{\sqrt{\pi}\,\Gamma((d-1)/2)}
+\frac{\Gamma(d/2)}{\sqrt{\pi}\Gamma((d-1)/2)}
 (1-x^2)^{(d-3)/2}, \quad x \in [-1,1].
 $$
 
@@ -434,7 +434,7 @@ $$
 \min_{-1 \le c_1 \le \cdots \le c_{2^b} \le 1}
 \sum_{i=1}^{2^b}
 \int_{\frac{c_{i-1}+c_i}{2}}^{\frac{c_i+c_{i+1}}{2}}
-|x-c_i|^2 f_X(x)\,dx.
+|x-c_i|^2 f_X(x)dx.
 $$
 
 This objective deserves a more explicit interpretation. The values $c_1,\dots,c_{2^b}$ are the scalar reconstruction levels, or centroids, that will form the codebook. Since quantization always maps a point to its nearest centroid, the interval $[-1,1]$ is partitioned into Voronoi regions whose boundaries are the midpoints between consecutive centroids:
@@ -451,7 +451,7 @@ The term
 
 $$
 \int_{\frac{c_{i-1}+c_i}{2}}^{\frac{c_i+c_{i+1}}{2}}
-|x-c_i|^2 f_X(x)\,dx
+|x-c_i|^2 f_X(x)dx
 $$
 
 is therefore the expected squared distortion contributed by the $i$-th region. The factor $|x-c_i|^2$ is the reconstruction error if $x$ is represented by $c_i$, and the density $f_X(x)$ weights that error by how often that coordinate value occurs. Summing over all regions gives the total expected MSE of the scalar quantizer.
@@ -464,7 +464,7 @@ This is exactly the continuous analogue of ordinary k-means. In finite-data k-me
 In the continuous setting, if $R_i$ denotes the Voronoi region of centroid $c_i$, then the optimality condition has the same form as in ordinary k-means:
 
 $$
-c_i = \frac{\int_{R_i} x f_X(x)\,dx}{\int_{R_i} f_X(x)\,dx}.
+c_i = \frac{\int_{R_i} x f_X(x)dx}{\int_{R_i} f_X(x)dx}.
 $$
 
 So $\mathcal{C}(f_X,b)$ is the minimum achievable scalar MSE when quantizing a random variable with density $f_X$ using $2^b$ reconstruction values.
@@ -675,7 +675,7 @@ The paper also notes that TurboQuant can be made slightly more storage-efficient
 If the centroid indices are denoted by $\ell \in [2^b]$, then the probability of seeing index $\ell$ is
 
 $$
-p_\ell := \int_{\frac{c_{\ell-1}+c_\ell}{2}}^{\frac{c_\ell+c_{\ell+1}}{2}} f_X(x)\,dx.
+p_\ell := \int_{\frac{c_{\ell-1}+c_\ell}{2}}^{\frac{c_\ell+c_{\ell+1}}{2}} f_X(x)dx.
 $$
 
 This is simply the probability mass of the Voronoi region associated with centroid $c_\ell$. Once these probabilities are known, the index stream can be compressed losslessly with an entropy code such as a prefix code. The average number of bits per stored index can then be reduced from the fixed value $b$ to nearly the entropy of the distribution $\{p_\ell\}_{\ell \in [2^b]}$.
@@ -802,3 +802,4 @@ After implementing and testing the main components of the paper, my overall conc
 From the experiments, I found that $\mathrm{TurboQuant}_{\tt mse}$ behaves as expected for reconstruction quality: it gives a simple and effective way to compress unit vectors while keeping the MSE controlled. At the same time, minimizing reconstruction MSE alone is not enough to guarantee the best inner-product behavior.
 
 However, $ \mathrm{TurboQuant}_{\tt prod} $ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
+
