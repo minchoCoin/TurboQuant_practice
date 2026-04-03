@@ -16,7 +16,7 @@ The formula in the paper is:
 $$
 f_X(x) =
 \frac{\Gamma(d/2)}{\sqrt{\pi}\,\Gamma((d-1)/2)}
-\left(1-x^2\right)^{(d-3)/2}, \quad x \in [-1,1].
+(1-x^2)^{(d-3)/2}, \quad x \in [-1,1].
 $$
 
 The intuition is that if we fix one coordinate of a random point on the sphere to $x_j = x$, then the remaining coordinates must lie on a lower-dimensional sphere of radius $\sqrt{1-x^2}$. So the probability of observing a given coordinate value is determined by the size of that spherical cross-section.
@@ -135,31 +135,31 @@ exactly cancels this factor, so the reconstruction is centered at the original v
 A more formal derivation is as follows. Let the rows of $\mathbf{S}$ be $\mathbf{s}_1, \dots, \mathbf{s}_d$, where each $\mathbf{s}_i \sim N(\mathbf{0}, I_d)$. Then
 
 $$
-\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x}) = \sum_{i=1}^d \mathbf{s}_i \operatorname{sign}(\mathbf{s}_i^\top \mathbf{x}),
+\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x}) = \sum_{i=1}^d \mathbf{s}_i \\mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}),
 $$
 
 so
 
 $$
-\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = d \, \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right].
+\mathbb{E}[\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = d \, \mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})].
 $$
 
 By rotational invariance of the Gaussian distribution, the vector
 
 $$
-\mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right]
+\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})]
 $$
 
 must be parallel to $\mathbf{x}$, so for some scalar $c$,
 
 $$
-\mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = c \mathbf{x}.
+\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = c \mathbf{x}.
 $$
 
 To find $c$, take the inner product with $\mathbf{x}$. When $\|\mathbf{x}\|_2 = 1$,
 
 $$
-\mathbf{x}^\top \mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \mathbb{E}\left[(\mathbf{s}^\top \mathbf{x}) \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \mathbb{E}\left[|\mathbf{s}^\top \mathbf{x}|\right].
+\mathbf{x}^\top \mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[(\mathbf{s}^\top \mathbf{x}) \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \mathbb{E}[|\mathbf{s}^\top \mathbf{x}|].
 $$
 
 Since $\mathbf{s}^\top \mathbf{x} \sim N(0,1)$, this becomes
@@ -171,19 +171,19 @@ $$
 Therefore,
 
 $$
-\mathbb{E}\left[\mathbf{s} \operatorname{sign}(\mathbf{s}^\top \mathbf{x})\right] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
+\mathbb{E}[\mathbf{s} \\mathrm{sign}(\mathbf{s}^\top \mathbf{x})] = \sqrt{\frac{2}{\pi}} \, \mathbf{x},
 $$
 
 and hence
 
 $$
-\mathbb{E}\left[\mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
+\mathbb{E}[\mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = d \sqrt{\frac{2}{\pi}} \, \mathbf{x}.
 $$
 
 Now applying the dequantization factor gives
 
 $$
-\mathbb{E}\left[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \operatorname{sign}(\mathbf{S}\mathbf{x})\right] = \mathbf{x}.
+\mathbb{E}[\frac{\sqrt{\pi/2}}{d} \mathbf{S}^\top \\mathrm{sign}(\mathbf{S}\mathbf{x})] = \mathbf{x}.
 $$
 
 This is the precise reason the coefficient $\sqrt{\pi/2}/d$ appears in Definition 1: it makes the QJL reconstruction unbiased in expectation for unit vectors, which is exactly the normalization needed for unbiased inner-product estimation.
@@ -193,7 +193,7 @@ This is the precise reason the coefficient $\sqrt{\pi/2}/d$ appears in Definitio
 Lemma 4 in `TurboQuant/main.tex` gives the main statistical guarantee for QJL. For any unit vector $\mathbf{x} \in S^{d-1}$ and any query vector $\mathbf{y} \in \mathbb{R}^d$, consider the scalar estimator
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle
 $$
 
 obtained in three steps:
@@ -210,13 +210,13 @@ Lemma 4 says that this estimator has two key properties:
 More precisely, the lemma states
 
 $$
-\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \langle \mathbf{y}, \mathbf{x} \rangle
+\mathbb{E}[\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle] = \langle \mathbf{y}, \mathbf{x} \rangle
 $$
 
 and
 
 $$
-\mathrm{Var}\left(\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right)
+\mathrm{Var}(\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle)
 \le
 \frac{\pi}{2d}\|\mathbf{y}\|_2^2.
 $$
@@ -238,7 +238,7 @@ $$
 and substituting $\mathbf{z} = Q_{\tt qjl}(\mathbf{x}) = \mathrm{sign}(\mathbf{S}\mathbf{x})$, we obtain
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
 
 This formula comes from a direct substitution. First,
@@ -250,8 +250,8 @@ $$
 Taking the inner product with $\mathbf{y}$ gives
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{\sqrt{\pi/2}}{d}
-\left\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle.
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{\sqrt{\pi/2}}{d}
+\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \rangle.
 $$
 
 Now use the identity
@@ -263,7 +263,7 @@ $$
 Then
 
 $$
-\left\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle = \left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle.
+\langle \mathbf{y}, \mathbf{S}^\top \mathrm{sign}(\mathbf{S}\mathbf{x}) \rangle = \langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \rangle.
 $$
 
 If the rows of $\mathbf{S}$ are $\mathbf{s}_1,\dots,\mathbf{s}_d$, then
@@ -285,7 +285,7 @@ $$
 Therefore their inner product is
 
 $$
-\left\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \right\rangle = \sum_{i=1}^d
+\langle \mathbf{S}\mathbf{y}, \mathrm{sign}(\mathbf{S}\mathbf{x}) \rangle = \sum_{i=1}^d
 \mathbf{s}_i^\top \mathbf{y}\,
 \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
 $$
@@ -293,7 +293,7 @@ $$
 Substituting this back yields
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{\sqrt{\pi/2}}{d}
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{\sqrt{\pi/2}}{d}
 \sum_{i=1}^d
 \mathbf{s}_i^\top \mathbf{y}\,
 \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}) = \frac{1}{d}\sum_{i=1}^d \sqrt{\pi/2} \, \mathbf{s}_i^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_i^\top \mathbf{x}).
@@ -308,7 +308,7 @@ $$
 Then
 
 $$
-\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle = \frac{1}{d}\sum_{i=1}^d z_i.
+\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle = \frac{1}{d}\sum_{i=1}^d z_i.
 $$
 
 This is the central simplification in the proof.
@@ -318,13 +318,13 @@ This is the central simplification in the proof.
 From the normalization argument in the previous QJL section, we already know that for unit vectors $\mathbf{x}$,
 
 $$
-\mathbb{E}\left[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))\right] = \mathbf{x}.
+\mathbb{E}[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))] = \mathbf{x}.
 $$
 
 Taking inner products with $\mathbf{y}$ and using linearity of expectation yields
 
 $$
-\mathbb{E}\left[\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right] = \left\langle \mathbf{y}, \mathbb{E}\left[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))\right] \right\rangle = \langle \mathbf{y}, \mathbf{x} \rangle.
+\mathbb{E}[\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle] = \langle \mathbf{y}, \mathbb{E}[Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x}))] \rangle = \langle \mathbf{y}, \mathbf{x} \rangle.
 $$
 
 So the QJL inner-product estimator is exactly unbiased.
@@ -334,7 +334,7 @@ So the QJL inner-product estimator is exactly unbiased.
 Since the estimator is the average of independent samples $z_1,\dots,z_d$, its variance is
 
 $$
-\mathrm{Var}\left(\frac{1}{d}\sum_{i=1}^d z_i\right)
+\mathrm{Var}(\frac{1}{d}\sum_{i=1}^d z_i)
 \le
 \frac{1}{d^2}\sum_{i=1}^d \mathrm{Var}(z_i) = \frac{1}{d}\mathrm{Var}(z_1),
 $$
@@ -344,9 +344,9 @@ because the $z_i$ are i.i.d.
 So it remains to bound the variance of one term. The paper uses
 
 $$
-\mathrm{Var}(z_1) = \frac{\pi}{2}\,\mathrm{Var}\left(\mathbf{s}_1^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x})\right)
+\mathrm{Var}(z_1) = \frac{\pi}{2}\,\mathrm{Var}(\mathbf{s}_1^\top \mathbf{y} \, \mathrm{sign}(\mathbf{s}_1^\top \mathbf{x}))
 \le
-\frac{\pi}{2}\,\mathbb{E}\left[(\mathbf{s}_1^\top \mathbf{y})^2\right].
+\frac{\pi}{2}\,\mathbb{E}[(\mathbf{s}_1^\top \mathbf{y})^2].
 $$
 
 This step uses the basic fact that variance is at most the second moment, together with the fact that multiplying by a sign changes only the sign, not the magnitude.
@@ -354,7 +354,7 @@ This step uses the basic fact that variance is at most the second moment, togeth
 Now $\mathbf{s}_1 \sim N(\mathbf{0}, I_d)$, so the scalar $\mathbf{s}_1^\top \mathbf{y}$ is Gaussian with mean $0$ and variance $\|\mathbf{y}\|_2^2$. Therefore,
 
 $$
-\mathbb{E}\left[(\mathbf{s}_1^\top \mathbf{y})^2\right] = \|\mathbf{y}\|_2^2.
+\mathbb{E}[(\mathbf{s}_1^\top \mathbf{y})^2] = \|\mathbf{y}\|_2^2.
 $$
 
 Hence
@@ -366,7 +366,7 @@ $$
 Substituting this into the variance-of-the-average formula gives
 
 $$
-\mathrm{Var}\left(\left\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \right\rangle\right)
+\mathrm{Var}(\langle \mathbf{y}, Q_{\tt qjl}^{-1}(Q_{\tt qjl}(\mathbf{x})) \rangle)
 \le
 \frac{\pi}{2d}\|\mathbf{y}\|_2^2.
 $$
@@ -391,7 +391,7 @@ This random rotation is what makes the quantization problem tractable. By Lemma 
 $$
 f_X(x) =
 \frac{\Gamma(d/2)}{\sqrt{\pi}\,\Gamma((d-1)/2)}
-\left(1-x^2\right)^{(d-3)/2}, \quad x \in [-1,1].
+(1-x^2)^{(d-3)/2}, \quad x \in [-1,1].
 $$
 
 In high dimension this distribution is close to a normal distribution, and different coordinates are nearly independent. That means the original high-dimensional quantization problem can be approximated by a scalar quantization problem applied independently to each coordinate.
@@ -465,13 +465,13 @@ The important conceptual point is that TurboQuant converts a difficult worst-cas
 The paper also gives intuition for the resulting centroids. In moderately high dimension, where $f_X$ is already close to Gaussian, the optimal centroids scale like $1/\sqrt{d}$. For example, for $b=1$ the optimal codebook is approximately
 
 $$
-\left\{ \pm \frac{\sqrt{2/\pi}}{\sqrt{d}} \right\},
+\{ \pm \frac{\sqrt{2/\pi}}{\sqrt{d}} \},
 $$
 
 and for $b=2$ it is approximately
 
 $$
-\left\{ \pm \frac{0.453}{\sqrt{d}}, \pm \frac{1.51}{\sqrt{d}} \right\}.
+\{ \pm \frac{0.453}{\sqrt{d}}, \pm \frac{1.51}{\sqrt{d}} \}.
 $$
 
 This section is the design blueprint of $\mathrm{TurboQuant}_{\tt mse}$: random rotation to create a universal coordinate distribution, then optimal scalar quantization on that distribution, then inverse rotation back to the original basis.
@@ -521,7 +521,7 @@ After presenting the algorithm, the paper states a performance guarantee for $\m
 The paper defines the reconstruction error as
 
 $$
-D_{\tt mse} := \mathbb{E}\left[\|\mathbf{x} - \tilde{\mathbf{x}}\|_2^2\right],
+D_{\tt mse} := \mathbb{E}[\|\mathbf{x} - \tilde{\mathbf{x}}\|_2^2],
 $$
 
 where the expectation is over the randomness of the rotation used by TurboQuant.
@@ -584,11 +584,11 @@ The corresponding quantization map stores three objects:
 In the paper, this is summarized as
 
 $$
-Q_{\tt prod}(\mathbf{x}) = \left[
+Q_{\tt prod}(\mathbf{x}) = [
 Q_{\tt mse}(\mathbf{x}),
-Q_{\tt qjl}\left(\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))\right),
-\left\|\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))\right\|_2
-\right].
+Q_{\tt qjl}(\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))),
+\|\mathbf{x} - Q_{\tt mse}^{-1}(Q_{\tt mse}(\mathbf{x}))\|_2
+].
 $$
 
 During dequantization, the algorithm reconstructs the MSE component, reconstructs the QJL correction term from the sign sketch and the residual norm, and then adds the two pieces together.
@@ -610,7 +610,7 @@ This is why the algorithm is called inner-product optimal: it uses the MSE quant
 The paper proves that $\mathrm{TurboQuant}_{\tt prod}$ is unbiased for inner products. For any unit vector $\mathbf{x} \in S^{d-1}$ and any query vector $\mathbf{y} \in \mathbb{R}^d$, the reconstructed vector $\tilde{\mathbf{x}}$ satisfies
 
 $$
-\mathbb{E}\left[\langle \mathbf{y}, \tilde{\mathbf{x}} \rangle\right] = \langle \mathbf{y}, \mathbf{x} \rangle.
+\mathbb{E}[\langle \mathbf{y}, \tilde{\mathbf{x}} \rangle] = \langle \mathbf{y}, \mathbf{x} \rangle.
 $$
 
 The paper then gives the following upper bound for the inner-product distortion
@@ -618,7 +618,7 @@ The paper then gives the following upper bound for the inner-product distortion
 $$
 D_{\tt prod}
 :=
-\mathbb{E}\left[\left| \langle \mathbf{y}, \mathbf{x} \rangle - \langle \mathbf{y}, \tilde{\mathbf{x}} \rangle \right|^2\right]
+\mathbb{E}[| \langle \mathbf{y}, \mathbf{x} \rangle - \langle \mathbf{y}, \tilde{\mathbf{x}} \rangle |^2]
 \le
 \frac{\sqrt{3}\pi^2 \|\mathbf{y}\|_2^2}{d} \cdot \frac{1}{4^b}.
 $$
@@ -756,4 +756,5 @@ After implementing and testing the main components of the paper, my overall conc
 From the experiments, I found that $\mathrm{TurboQuant}_{\tt mse}$ behaves as expected for reconstruction quality: it gives a simple and effective way to compress unit vectors while keeping the MSE controlled. At the same time, minimizing reconstruction MSE alone is not enough to guarantee the best inner-product behavior.
 
 However,$\mathrm{TurboQuant}_{\tt prod}$ don't seem better than $\mathrm{TurboQuant}_{\tt mse}$. I think that this is because of implementation error.
+
 
