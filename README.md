@@ -21,12 +21,14 @@ TurboQuant paper: [https://arxiv.org/abs/2504.19874](https://arxiv.org/abs/2504.
 - `10.TurboQuant_final_simulation.py`: final comparison across bit widths with per-trial randomized quantizers.
 - `10.TurboQuant_final_simulation_fix.py`: fixed-quantizer(rotation matrix) version of final comparison.
 - `11.TurboQuant_quantizaiton_simulation.py`: quantized-only similarity experiment and Q(float)-K(quantized) softmax comparison.
-- `TurboQuant_mse.py`: baseline TurboQuant\_mse implementation (exact-density style).
-- `TurboQuant_mse_montecarlo.py`: Monte Carlo codebook-learning version of TurboQuant\_mse.
-- `TurboQuant_mse_lgamma.py`: numerically stable TurboQuant\_mse using log-gamma (`lgamma`) formulas.
-- `TurboQuant_prod.py`: baseline TurboQuant\_prod built on `TurboQuant_mse.py`.
-- `TurboQuant_prod_montecarlo.py`: Monte Carlo TurboQuant\_prod built on `TurboQuant_mse_montecarlo.py`.
-- `TurboQuant_prod_lgamma.py`: numerically stable TurboQuant\_prod built on `TurboQuant_mse_lgamma.py`.
+- `TurboQuant_mse.py`: current main TurboQuant\_mse implementation (Gaussian-coordinate approximation, not exact Lemma 1 density).
+- `TurboQuant_prod.py`: current main TurboQuant\_prod implementation built on the new `TurboQuant_mse.py`.
+- `pseudo_turboquant/TurboQuant_mse.py`: archived previous exact-density style TurboQuant\_mse.
+- `pseudo_turboquant/TurboQuant_mse_montecarlo.py`: archived Monte Carlo codebook-learning TurboQuant\_mse.
+- `pseudo_turboquant/TurboQuant_mse_lgamma.py`: archived log-gamma stable TurboQuant\_mse.
+- `pseudo_turboquant/TurboQuant_prod.py`: archived previous TurboQuant\_prod.
+- `pseudo_turboquant/TurboQuant_prod_montecarlo.py`: archived Monte Carlo TurboQuant\_prod.
+- `pseudo_turboquant/TurboQuant_prod_lgamma.py`: archived log-gamma stable TurboQuant\_prod.
 
 ## Lemma 1 Explanation
 
