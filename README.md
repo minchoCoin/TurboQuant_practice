@@ -486,11 +486,8 @@ So the overall MSE-optimal TurboQuant pipeline is:
 
 The quantization map therefore stores only the centroid index of each rotated coordinate. The dequantization map replaces each stored index by its corresponding centroid and then applies the inverse rotation. In symbols, the paper describes:
 
-- quantization: compute $\mathbf{y} = \mathbf{\Pi}\mathbf{x}$ and store
-  $\mathrm{idx}_j = \arg\min_{k \in [2^b]} |y_j - c_k|$
-  for each coordinate $j$
-- dequantization: reconstruct
-  $\tilde{y}_j = c_{\mathrm{idx}_j}, \qquad \tilde{\mathbf{x}} = \mathbf{\Pi}^\top \tilde{\mathbf{y}}$
+- quantization: compute $\mathbf{y}=\mathbf{\Pi}\mathbf{x}$ and store $\mathrm{idx}_j=\arg\min_{k\in\{1,\dots,2^b\}}|y_j-c_k|$ for each coordinate $j$.
+- dequantization: reconstruct with $\tilde{y}_j=c_{\mathrm{idx}_j}$ and $\tilde{\mathbf{x}}=\mathbf{\Pi}^\top\tilde{\mathbf{y}}$.
 
 The important conceptual point is that TurboQuant converts a difficult worst-case vector quantization problem into a distribution-aware scalar quantization problem by first randomizing the basis. The random rotation makes every coordinate statistically predictable, and once that happens, the optimal codebook can be designed using the known spherical coordinate distribution.
 
