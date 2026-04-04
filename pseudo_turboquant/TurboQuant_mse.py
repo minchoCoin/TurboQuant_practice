@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional
 
-import math
 import numpy as np
+import math
 
 
 def make_random_rotation(dimension: int, seed: Optional[int] = None) -> np.ndarray:
@@ -13,17 +13,22 @@ def make_random_rotation(dimension: int, seed: Optional[int] = None) -> np.ndarr
     gaussian = rng.normal(size=(dimension, dimension))
     q_matrix, r_matrix = np.linalg.qr(gaussian)
 
+    # Fix the sign ambiguity so the distribution is consistent across runs.
     signs = np.sign(np.diag(r_matrix))
     signs[signs == 0.0] = 1.0
     return q_matrix @ np.diag(signs)
 
 
-def gaussian_density(x: np.ndarray, std: float) -> np.ndarray:
-    coefficient = 1.0 / (math.sqrt(2.0 * math.pi) * std)
-    return coefficient * np.exp(-0.5 * (x / std) ** 2)
+def sphere_coordinate_density(x: np.ndarray, dimension: int) -> np.ndarray:
+    """Exact coordinate density from Lemma 1 for a random point on S^{d-1}."""
+    coefficient = math.gamma(dimension / 2.0) / (
+        math.sqrt(math.pi) * math.gamma((dimension - 1.0) / 2.0)
+    )
+    return coefficient * np.maximum(1.0 - x**2, 0.0) ** ((dimension - 3.0) / 2.0)
 
 
 def initialize_codebook_from_grid(grid: np.ndarray, weights: np.ndarray, num_centroids: int) -> np.ndarray:
+    """Initialize codebook using weighted quantiles on a deterministic grid."""
     quantiles = np.linspace(0.0, 1.0, num_centroids + 2)[1:-1]
     cumulative = np.cumsum(weights)
     cumulative = cumulative / cumulative[-1]
@@ -31,20 +36,22 @@ def initialize_codebook_from_grid(grid: np.ndarray, weights: np.ndarray, num_cen
     return np.sort(codebook.astype(np.float64))
 
 
-def lloyd_max_quantizer_from_gaussian(
+def lloyd_max_quantizer_from_density(
     dimension: int,
     num_centroids: int,
     num_grid_points: int = 200_001,
     max_iters: int = 100,
     tol: float = 1e-7,
 ) -> np.ndarray:
-    """Fit a 1D codebook from N(0, 1/d) using weighted Lloyd-Max iterations."""
-    std = 1.0 / math.sqrt(dimension)
-    # 6-sigma captures practically all mass of the target Gaussian.
-    max_abs = 6.0 * std
-    grid = np.linspace(-max_abs, max_abs, num_grid_points, dtype=np.float64)
+    """
+    Fit a 1D codebook using the exact Lemma 1 density on a deterministic grid.
+
+    This is closer to the paper than Monte Carlo sampling because the objective is
+    approximated from the closed-form density f_X instead of empirical samples.
+    """
+    grid = np.linspace(-1.0, 1.0, num_grid_points, dtype=np.float64)
     grid_spacing = grid[1] - grid[0]
-    weights = gaussian_density(grid, std) * grid_spacing
+    weights = sphere_coordinate_density(grid, dimension) * grid_spacing
     codebook = initialize_codebook_from_grid(grid, weights, num_centroids)
 
     for _ in range(max_iters):
@@ -70,11 +77,13 @@ def lloyd_max_quantizer_from_gaussian(
 
 
 def quantize_with_codebook(values: np.ndarray, codebook: np.ndarray) -> np.ndarray:
+    """Assign each scalar to the nearest centroid."""
     distances = np.abs(values[:, None] - codebook[None, :])
     return np.argmin(distances, axis=1)
 
 
 def dequantize_with_codebook(indices: np.ndarray, codebook: np.ndarray) -> np.ndarray:
+    """Map centroid indices back to scalar values."""
     return codebook[indices]
 
 
@@ -94,9 +103,8 @@ class TurboQuantMSE:
         codebook_seed: Optional[int] = None,
         codebook_samples: int = 200_000,
     ) -> "TurboQuantMSE":
-        _ = codebook_seed  # kept for API compatibility
         rotation = make_random_rotation(dimension=dimension, seed=rotation_seed)
-        codebook = lloyd_max_quantizer_from_gaussian(
+        codebook = lloyd_max_quantizer_from_density(
             dimension=dimension,
             num_centroids=2**bit_width,
             num_grid_points=max(codebook_samples + 1, 50_001),
@@ -109,46 +117,56 @@ class TurboQuantMSE:
         )
 
     def quant(self, x: np.ndarray) -> np.ndarray:
+        """Quantize x by rotating and storing nearest-centroid indices."""
         x = np.asarray(x, dtype=np.float64)
-        if x.shape != (self.dimension,):
-            raise ValueError(f"x must have shape ({self.dimension},), got {x.shape}")
+        if x.ndim != 1 or x.shape[0] != self.dimension:
+            raise ValueError("x must be a 1D vector with the configured dimension.")
+
         rotated = self.rotation @ x
         return quantize_with_codebook(rotated, self.codebook)
 
     def dequant(self, indices: np.ndarray) -> np.ndarray:
-        indices = np.asarray(indices, dtype=np.int64)
-        if indices.shape != (self.dimension,):
-            raise ValueError(f"indices must have shape ({self.dimension},), got {indices.shape}")
+        """Dequantize indices by reconstructing rotated coordinates and rotating back."""
+        indices = np.asarray(indices)
+        if indices.ndim != 1 or indices.shape[0] != self.dimension:
+            raise ValueError("indices must be a 1D vector with the configured dimension.")
+
         rotated_reconstruction = dequantize_with_codebook(indices, self.codebook)
         return self.rotation.T @ rotated_reconstruction
 
 
 def main() -> None:
-    dimension = 256
+    dimension = 8
     bit_width = 2
-    rng = np.random.default_rng(7)
-
-    x = rng.normal(size=dimension)
+    x = np.array([1.0, -0.5, 0.25, 0.0, 0.75, -1.25, 0.5, -0.2], dtype=np.float64)
     x = x / np.linalg.norm(x)
 
     turboquant = TurboQuantMSE.create(
         dimension=dimension,
         bit_width=bit_width,
         rotation_seed=7,
-        codebook_seed=7,
+        codebook_seed=11,
     )
 
-    idx = turboquant.quant(x)
-    x_hat = turboquant.dequant(idx)
-
+    indices = turboquant.quant(x)
+    x_hat = turboquant.dequant(indices)
     d_mse = float(np.sum((x - x_hat) ** 2))
+    per_coordinate_mse = float(np.mean((x - x_hat) ** 2))
     lower_bound = 1.0 / (4.0**bit_width)
     upper_bound = (math.sqrt(3.0) * math.pi / 2.0) * lower_bound
 
-    print(f"dimension={dimension}, bit_width={bit_width}")
-    print(f"D_mse = {d_mse:.6f}")
-    print(f"Lower bound (theory) = {lower_bound:.6f}")
-    print(f"Upper bound (theory) = {upper_bound:.6f}")
+    print("dimension:", dimension)
+    print("bit width:", bit_width)
+    print("codebook:", np.round(turboquant.codebook, 6))
+    print("x:", np.round(x, 6))
+    print("indices:", indices)
+    print("reconstruction:", np.round(x_hat, 6))
+    print("D_mse (sum squared error):", round(d_mse, 6))
+    print("per-coordinate MSE:", round(per_coordinate_mse, 6))
+    print("lower bound for D_mse:", round(lower_bound, 6))
+    print("upper bound for D_mse:", round(upper_bound, 6))
+    print("lower bound <= D_mse:", lower_bound <= d_mse)
+    print("D_mse <= upper bound:", d_mse <= upper_bound)
 
 
 if __name__ == "__main__":

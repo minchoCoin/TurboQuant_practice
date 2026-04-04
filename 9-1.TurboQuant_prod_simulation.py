@@ -6,7 +6,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-from TurboQuant_prod_lgamma import TurboQuantProd, cosine_similarity
+from TurboQuant_prod import TurboQuantProd, cosine_similarity
 
 
 def sample_unit_vector(dimension: int, rng: np.random.Generator) -> np.ndarray:

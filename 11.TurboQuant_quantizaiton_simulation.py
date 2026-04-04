@@ -5,7 +5,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
-from TurboQuant_mse_lgamma import TurboQuantMSE
+from TurboQuant_mse import TurboQuantMSE
 
 
 def sample_unit_vector(dimension: int, rng: np.random.Generator) -> np.ndarray:
