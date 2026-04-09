@@ -15,6 +15,10 @@ def sample_unit_vector(dimension: int, rng: np.random.Generator) -> np.ndarray:
     return vector / np.linalg.norm(vector)
 
 
+def cosine_similarity(x: np.ndarray, y: np.ndarray) -> float:
+    return float(np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y)))
+
+
 def run_method_trials(
     method_name: str,
     dimension: int,
@@ -28,6 +32,8 @@ def run_method_trials(
     d_mse_values = np.zeros(num_trials, dtype=np.float64)
     d_prod_values = np.zeros(num_trials, dtype=np.float64)
     prod_error_values = np.zeros(num_trials, dtype=np.float64)
+    true_inner_values = np.zeros(num_trials, dtype=np.float64)
+    recon_inner_values = np.zeros(num_trials, dtype=np.float64)
 
     for trial in range(num_trials):
         if method_name == "mse":
@@ -58,9 +64,13 @@ def run_method_trials(
 
         difference = x - x_hat
         d_mse_values[trial] = float(np.sum(difference**2))
-        prod_error = float(np.dot(y, x) - np.dot(y, x_hat))
+        true_inner = float(np.dot(y, x))
+        recon_inner = float(np.dot(y, x_hat))
+        prod_error = true_inner - recon_inner
         prod_error_values[trial] = prod_error
         d_prod_values[trial] = float(prod_error**2)
+        true_inner_values[trial] = true_inner
+        recon_inner_values[trial] = recon_inner
 
     mse_lower_bound = 1.0 / (4.0**bit_width)
     mse_upper_bound = (math.sqrt(3.0) * math.pi / 2.0) * mse_lower_bound
@@ -72,8 +82,11 @@ def run_method_trials(
         "d_mse_values": d_mse_values,
         "d_prod_values": d_prod_values,
         "prod_error_values": prod_error_values,
+        "true_inner_values": true_inner_values,
+        "recon_inner_values": recon_inner_values,
         "mean_d_mse": float(np.mean(d_mse_values)),
         "mean_d_prod": float(np.mean(d_prod_values)),
+        "inner_cosine": cosine_similarity(true_inner_values, recon_inner_values),
         "mse_lower_bound": mse_lower_bound,
         "mse_upper_bound": mse_upper_bound,
         "prod_lower_bound": prod_lower_bound,
@@ -96,9 +109,10 @@ def plot_final_simulation(
     prod_error_axes = [fig.add_subplot(grid[1, col]) for col in range(num_cols)]
     mse_sq_error_axes = [fig.add_subplot(grid[2, col]) for col in range(num_cols)]
     prod_sq_error_axes = [fig.add_subplot(grid[3, col]) for col in range(num_cols)]
-    summary_grid = grid[4, :].subgridspec(1, 2, wspace=0.28)
+    summary_grid = grid[4, :].subgridspec(1, 3, wspace=0.32)
     prod_summary_ax = fig.add_subplot(summary_grid[0, 0])
     mse_summary_ax = fig.add_subplot(summary_grid[0, 1])
+    cosine_summary_ax = fig.add_subplot(summary_grid[0, 2])
 
     mse_mean_prod_errors = []
     prod_mean_prod_errors = []
@@ -109,6 +123,8 @@ def plot_final_simulation(
     prod_mean_mse = []
     mse_lower_bounds = []
     mse_upper_bounds = []
+    mse_inner_cosines = []
+    prod_inner_cosines = []
 
     for idx, bit_width in enumerate(bit_widths):
         mse_result = run_method_trials(
@@ -247,6 +263,8 @@ def plot_final_simulation(
         prod_mean_mse.append(float(prod_result["mean_d_mse"]))
         mse_lower_bounds.append(float(mse_result["mse_lower_bound"]))
         mse_upper_bounds.append(float(mse_result["mse_upper_bound"]))
+        mse_inner_cosines.append(float(mse_result["inner_cosine"]))
+        prod_inner_cosines.append(float(prod_result["inner_cosine"]))
 
     prod_summary_ax.plot(
         bit_widths,
@@ -328,6 +346,29 @@ def plot_final_simulation(
     mse_summary_ax.grid(alpha=0.2)
     mse_summary_ax.legend(frameon=False)
 
+    cosine_summary_ax.plot(
+        bit_widths,
+        mse_inner_cosines,
+        marker="o",
+        linewidth=2.0,
+        color="#4C78A8",
+        label=r"$\cos(\langle y,x\rangle,\langle y,\tilde{x}\rangle)$ for MSE",
+    )
+    cosine_summary_ax.plot(
+        bit_widths,
+        prod_inner_cosines,
+        marker="o",
+        linewidth=2.0,
+        color="#F58518",
+        label=r"$\cos(\langle y,x\rangle,\langle y,\tilde{x}\rangle)$ for Prod",
+    )
+    cosine_summary_ax.set_title("Inner-Product Cosine vs. bit width")
+    cosine_summary_ax.set_xlabel("Bit width")
+    cosine_summary_ax.set_ylabel("Cosine similarity across trials")
+    cosine_summary_ax.set_ylim(0.0, 1.02)
+    cosine_summary_ax.grid(alpha=0.2)
+    cosine_summary_ax.legend(frameon=False)
+
     fig.suptitle(f"Final TurboQuant Comparison at dimension d = {dimension}", fontsize=18)
     fig.tight_layout()
     fig.savefig(output_path, dpi=150, bbox_inches="tight")
@@ -357,6 +398,7 @@ def main() -> None:
     print("1. Inner-product distortion distributions for MSE and Prod quantizers")
     print("2. Mean inner-product distortion vs. lower and upper bounds")
     print("3. Mean MSE vs. lower and upper bounds")
+    print("4. Cosine similarity between <y,x> and <y,x_hat> across trials")
 
 
 if __name__ == "__main__":
